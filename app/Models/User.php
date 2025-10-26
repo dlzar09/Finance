@@ -2,47 +2,49 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
+    //
+    protected $fillable=[
+         'name',
         'email',
         'password',
+        'avatar',
+        'timezone',
+        'theme',
+
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
+    protected $hidden=[
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts=[
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function Metric(): HasMany
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Metric::class);
     }
+
+    public function Notification(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function RecentActivity(): HasMany
+    {
+        return $this->hasMany(RecentActivity::class);
+    } 
+
+    public function UserPreference(): HasOne
+    {
+        return $this->hasOne(UserPreference::class);
+    }
+
 }
