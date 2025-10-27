@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Metric;
+use App\Models\RecentActivity;
+use App\Models\UserPreference;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     //
     protected $fillable=[
-         'name',
+        'name',
         'email',
         'password',
         'avatar',

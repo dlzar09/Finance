@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Metric extends Model
