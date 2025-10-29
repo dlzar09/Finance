@@ -10,7 +10,7 @@ class Metric extends Model
     //
 
     protected $fillable=[
-         'user_id',
+        'user_id',
         'name',
         'value',
         'previous_value',
